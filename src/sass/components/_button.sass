@@ -1,0 +1,49 @@
+/* Это компонент кнопки */
+
+.btn
+    &, &:link, &:visited //"&," - означает, что все эти св-ва будут применятся и к класу btn
+        @include style-link($color-gray)
+        padding: 1.5rem 4rem
+        background: $color-white
+        border-radius: 5rem
+        transition: all .3s
+        position: relative
+        font-size: 2rem
+        border: none
+        @include respond(tab-land)
+            font-size: 1.8rem
+            padding: 1.5rem 3.7rem
+        @include respond(tab-port)
+            padding: 2rem 5rem
+
+    &:hover
+        transform: translateY(-0.4rem)
+        box-shadow: $box-shadow
+        &::after
+            opacity: 0
+            transform: scaleX(1.5) scaleY(1.7)
+    &:active
+        transform: translateY(-0.2rem)
+        box-shadow: $box-shadow
+    &::after
+        content: ""
+        background: $color-white
+        width: 100%
+        height: 100%
+        border-radius: 5rem
+        display: inline-block
+        position: absolute
+        top: 0
+        left: 0
+        z-index: -1
+        transition: all .4s
+    &_animated
+        animation: BtnToUp .7s ease-out 2s
+        animation-fill-mode: backwards
+
+.btn_brown
+    &, &:link, &:visited
+        background: $color-brown-dark
+        color: $color-white
+    &::after
+            background: $color-brown-dark

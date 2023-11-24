@@ -1,0 +1,112 @@
+.book
+    height: 50rem
+    background: linear-gradient(115deg, rgba(255,255,255,0.9) 0%, rgba(253,253,255,0.8) 57%, rgba(186,133,84,0.9) 57%, rgba(161,79,3,0.8) 100%), url(../img/bg-form.jpg) center / cover no-repeat
+    box-shadow: $box-shadow
+    border-radius: .5rem
+    overflow: hidden
+    @include respond(tab-port)
+        background: linear-gradient(115deg, rgba(255,255,255,0.9) 0%, rgba(253,253,255,0.8) 57%, rgba(186,133,84,0.9) 507%, rgba(161,79,3,0.8) 100%), url(../img/bg-form.jpg) center / cover no-repeat
+
+.form
+    width: 70%
+    padding-top: 5rem
+    padding-left: 5rem
+    @include respond(tab-port)
+        width: 100%
+        padding-top: 3rem
+    padding-left: 3rem
+    &__group:not(:last-child) //mb для всех, кроме последнего
+        margin-bottom: 2rem
+    &__group:nth-child(4) //4, т.к. в теге form 5 эл-в: 1 заголовок и 4 form__group. Поэтому nth:child(4)
+        margin-bottom: 4rem //margin-bottom меняется только у 4 эл-та
+    @include respond(tab-land)
+        &__group:not(:last-child)
+            margin-bottom: 0
+        &__group:nth-child(4)
+            margin-bottom: 2.5rem
+
+
+        
+    &__input
+        font-size: $font-size-paragraph
+        letter-spacing: .2rem
+        font-weight: 400
+        color: $color-black
+        padding: 2rem 0rem 2rem 2rem
+        background: $color-white
+        border: none
+        border-bottom: .3rem solid transparent //transparent - прозрачный, но при нажатии на форму, появляется рамка
+        border-radius: .5rem
+        width: 75%
+        @include respond(tab-port)
+            width: 90%
+            box-shadow: $box-shadow
+
+        &:focus
+            outline: none
+            border-bottom: .3rem solid #66D763
+            box-shadow: $box-shadow
+        &:focus:invalid
+            border-bottom: .3rem solid #D76363
+
+    &__label
+        font-size: $font-size-paragraph
+        letter-spacing: .2rem
+        font-weight: 400
+        display: block //переносит подсказку справа вниз
+        margin-top: 1rem
+        margin-left: 1.5rem
+        transition: .4s all
+
+    &__input:placeholder-shown + &__label //Убирает подсказки вне поля, но они появляются после того момента, как мы начали что-то вводить в поле для ввода. Знак + означает соседний элемент
+        opacity: 0
+        visibility: hidden
+        transform: translateY(-4rem)
+  
+    &__group-radio
+        display: inline-block
+        &:not(:last-child)
+            margin-right: 2rem
+        @include respond(tab-land)
+            display: block
+            &:not(:last-child)
+                margin-bottom: 2rem
+            
+    
+    &__input-radio
+        display: none //убираем стандартные кружки input'a
+
+    &__label-radio
+        cursor: pointer //заменяет стрелочку на руку при наведении
+        position: relative
+        padding-left: 4rem
+        
+    
+    &__buttom-radio //создаем обводку кружка выбоа тура
+        height: 3rem
+        width: 3rem
+        border-radius: 50%
+        border: .5rem solid $color-brown-dark
+        display: block
+        position: absolute
+        left: 0
+        top: -0.4rem
+        &::after //создаем кружок для выбора тура
+            content: ""
+            display: block
+            height: 1.5rem
+            width: 1.5rem
+            border-radius: 50%
+            background: $color-brown-dark
+            //позиционируем кружки по центру родителя (__buttom-radio)
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            opacity: 0
+            transition: .2s all
+    
+    &__input-radio:checked ~ &__label-radio &__buttom-radio::after //~ - позволяет выбрать соседские эл-ты, разница между ~ и + в том, что + позволяет выбрать только конкретно первый соседский эл-т, а ~ - все соседские эл-ты под каким-то названием, классам. Т.е. мы выбираем все псевдоэлементы after, которые находятся по соседству от &__input-radio в &__label-radio
+        opacity: 1
+        
+

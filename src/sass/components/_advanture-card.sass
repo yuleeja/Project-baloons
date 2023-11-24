@@ -1,0 +1,15 @@
+.advanture-card
+    padding: 2.5rem
+    background: rgba($color-white, .8)
+    border-radius: .5rem
+    box-shadow: $box-shadow
+    text-align: center
+    &:hover
+        transform: translateY(-1.5rem) scale(1.03)
+        transition: .3s all
+    &__icon
+        display: inline-block
+        font-size: 6rem
+        background: linear-gradient(90deg, rgba($color-brown-light, 0.7) 0.03%, rgba($color-brown-dark, 0.7) 99.94%)
+        -webkit-background-clip: text //убирает фон
+        color: transparent //окрашивает буквы в цвет убранного фона

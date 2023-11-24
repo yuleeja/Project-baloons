@@ -1,0 +1,18 @@
+.btn-text
+    &:link, &:visited
+        font-size: $font-size-paragraph
+        letter-spacing: .2rem
+        font-weight: 700
+        color: $color-brown-light
+        text-decoration: none
+        padding: 1rem
+        border-bottom: .1rem $color-brown-dark solid
+        display: inline-block //без этого кнопка не будет работать
+        transition: .8 all //плавность перехода
+    &:hover
+        background-color: $color-brown-light
+        color: white
+        box-shadow: $box-shadow
+        transform: translateY(-.2rem) //приподнимает кнопку вверх
+    &:active
+        transform: translateY(0) //при нажатии кнопка просидает

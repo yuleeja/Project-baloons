@@ -1,0 +1,27 @@
+.composition
+    position: relative
+    z-index: 5
+    &__photo
+        width: 55%
+        box-shadow: $box-shadow
+        border-radius: .5rem
+        position: absolute
+        transition: all .3s
+        outline-offset: 1rem
+        &_n1
+            top: 0
+            left: 0rem
+        &_n2
+            top: 2rem
+            right: 0rem
+        &_n3
+            top: 13rem
+            left: 10rem
+        &:hover
+            outline: .8rem solid $color-brown-light //применили не border, т.к. нужно было сделать отступ между фото и рамкой с помощью outline-offset
+            transform: scale(1.1) //увеличиваем картинку на 10% при наведении на неё
+            z-index: 20
+    &:hover &__photo:not(:hover) //hover настроен для родительского эл-та таким образом,что когда пользователь НЕ наводит на какое-то из фото, эти фото уменьшаются на 10%
+        transform: scale(.9)
+        
+        

@@ -1,0 +1,57 @@
+.feedBack-card
+    width: 85%
+    background: rgba($color-white, 0.75)
+    box-shadow: $box-shadow
+    margin: 0 auto
+    padding: 6rem
+    //снизу порядок действий, как сделать наклон и обрезать карточку:
+    transform: skewX(330deg) //наклоняем
+    @include respond(tab-port)
+        transform: skewX(350deg)
+        padding: 3rem
+    & > * //обращение к потомку(т.е. к содержимому обертки .feedBack-card, в нашем случае)
+        transform: skewX(-330deg) //содержимое карточки возвращается в начальное положение, а сама обертка остается под наклоном
+        @include respond(tab-port)
+            transform: skewX(-350deg)
+            text-align: center
+    &__img
+        width: 15rem
+        height: 15rem
+        float: left //обтекание картинки текстом
+        border-radius: 100rem
+        shape-outside: circle(50% at 50% 50%) //закругление текста
+        -webkit-shape-outside: circle(50% at 50% 50%)
+        margin-right: 4rem
+        overflow: hidden
+        position: relative
+        @include respond(tab-port)
+                float: none
+                margin: 0 auto
+                margin-bottom: 3rem
+        img
+            height: 100% //делаем такой размер, чтобы правильно обрезалась фотка
+            transform: scale(1.2)
+            transition: all .5s
+            
+    &__name
+        font-size: 2rem
+        letter-spacing: .2rem
+        font-weight: 400
+        color: $color-white
+        //нижние 5 свойства выравнивают по центру текст к кружках
+        text-align: center
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -20%)
+        opacity: 0 //скрывает текст до наведения на карточку
+        transition: all .5s
+
+    &:hover &__name //при наведении текст будет появлятся
+        transform: translate(-50%, -50%)
+        opacity: 1
+    &:hover img
+        transform: scale(1)
+        filter: blur(.3rem) brightness(70%) //создание блюра, brightness - затемнение блюра
+
+        
